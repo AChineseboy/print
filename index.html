@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Test1</h1>
+    <i class="startprint"></i>
+    <h1>Test2</h1>
+    <h1>Test3</h1>
+    <h1>Test4</h1>
+    <h1>Test5</h1>
+    <h1>Test6</h1>
+    <h1>Test7</h1>
+    <h1>Test8</h1>
+    <i class="endprint"></i>
+    <h1>Test9</h1>
+    <h1>Test10</h1>
+    <h1>Test11</h1>
+    <h1>Test12</h1>
+    <h1>Test13</h1>
+    <h1>Test14</h1>
+    <h1>Test15</h1>
+    <h1>Test16</h1>
+    <h1>Test17</h1>
+    <h1>Test18</h1>
+    <h1>Test19</h1>
+    <h1>Test20</h1>
+    <button>打印</button>
+</body>
+<script>
+    window.onload = function () {
+        function _print() {
+            let bdhtml = window.document.body.innerHTML;
+            let prnhtml = bdhtml.substr(bdhtml.indexOf('<i class="startprint"></i>') + 26);
+            prnhtml = prnhtml.substring(0, prnhtml.indexOf('<i class="endprint"></i>'));
+            const iframe = document.createElement('iframe')
+            iframe.className = 'print-iframe'
+            iframe.style.display = 'none'
+            document.body.appendChild(iframe)
+            iframe.contentWindow.document.body.innerHTML = prnhtml
+            iframe.contentWindow.print()
+            document.querySelectorAll('.print-iframe').forEach(item => {
+                document.body.removeChild(item)
+            })
+        }
+
+        let btn = document.querySelector('button')
+        btn.onclick = function (e) {
+            _print()
+        }
+    }
+</script>
+
+</html>
